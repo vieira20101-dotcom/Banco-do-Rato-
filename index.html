@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Banco do Lula — consulta de saldo, depósitos, saques e extrato.">
+  <title>Banco do Lula — Simulador bancário</title>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <p>🏦 Simulador bancário</p>
+    <h1>Banco do Lula</h1>
+    <hr>
+  </header>
+
+  <main>
+    <section aria-labelledby="tituloConta">
+      <h2 id="tituloConta">Sua conta</h2>
+      <p>Saldo atual<br><strong><output id="saldo" aria-live="polite">R$ 1.000,00</output></strong></p>
+    </section>
+
+    <section aria-labelledby="tituloOperacoes">
+      <h2 id="tituloOperacoes">Movimente sua conta</h2>
+      <form id="formOperacao" novalidate>
+        <fieldset>
+          <legend>Nova operação</legend>
+          <p>
+            <label for="operacao">O que você quer fazer?</label><br>
+            <select id="operacao" name="operacao">
+              <option value="consultar">Consultar saldo</option>
+              <option value="depositar">Depositar</option>
+              <option value="sacar">Sacar</option>
+              <option value="extrato">Ver extrato</option>
+            </select>
+          </p>
+          <p>
+            <label for="valor">Valor em reais (R$)</label><br>
+            <input id="valor" name="valor" type="number" min="1" step="1" placeholder="Ex.: 200" aria-describedby="ajudaValor" disabled>
+            <br><small id="ajudaValor">Não precisa informar um valor.</small>
+          </p>
+          <button type="submit">Executar operação</button>
+        </fieldset>
+      </form>
+      <noscript><p>Ative o JavaScript no navegador para usar o simulador.</p></noscript>
+    </section>
+
+    <section aria-labelledby="tituloResultado">
+      <h2 id="tituloResultado">Resultado</h2>
+      <p id="mensagem" role="status" aria-live="polite" aria-atomic="true">Escolha uma operação.</p>
+      <div id="cedulas" hidden>
+        <h3>Notas entregues</h3>
+        <ul id="listaNotas"></ul>
+        <p id="totalNotas"></p>
+      </div>
+    </section>
+
+    <section id="extrato" aria-labelledby="tituloExtrato" hidden>
+      <h2 id="tituloExtrato">Extrato da conta</h2>
+      <table>
+        <caption>Movimentações</caption>
+        <thead>
+          <tr>
+            <th scope="col">Nº</th>
+            <th scope="col">Movimentação</th>
+            <th scope="col">Entrada / saída</th>
+            <th scope="col">Saldo após</th>
+          </tr>
+        </thead>
+        <tbody id="corpoExtrato"></tbody>
+      </table>
+      <p id="saldoExtrato"></p>
+    </section>
+  </main>
+
+</body>
+</html>
